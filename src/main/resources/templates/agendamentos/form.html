@@ -45,15 +45,15 @@
         </form>
     </div>
     <script>
-    const selectServico = document.getElementById('servico');
-    const campoPreco = document.getElementById('preco');
+        const selectServico = document.getElementById('servico');
+        const campoPreco = document.getElementById('preco');
 
-    selectServico.addEventListener('change', function () {
-        const opcao = selectServico.options[selectServico.selectedIndex];
-        const preco = opcao.getAttribute('data-preco');
-        campoPreco.value = preco ? preco : '';
-    });
-</script>
+        selectServico.addEventListener('change', function () {
+            const opcao = selectServico.options[selectServico.selectedIndex];
+            const preco = opcao.getAttribute('data-preco');
+            campoPreco.value = preco ? preco : '';
+        });
+    </script>
 </body>
 
 </html>
