@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Barbearia - Agendamentos</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>💈 Barbearia - Agendamentos</h1>
+
+        <div class="barra">
+            <form th:action="@{/agendamentos}" method="get">
+                <input type="text" name="busca" placeholder="Buscar por cliente">
+                <button type="submit">Buscar</button>
+            </form>
+            <a class="btn" th:href="@{/agendamentos/novo}">+ Novo agendamento</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                    <th>Data</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="a : ${agendamentos}">
+                    <td th:text="${a.id}"></td>
+                    <td th:text="${a.nomeCliente}"></td>
+                    <td th:text="${a.servico}"></td>
+                    <td th:text="${a.data}"></td>
+                    <td th:text="'R$ ' + ${#numbers.formatDecimal(a.preco, 1, 'POINT', 2, 'COMMA')}"></td>
+                    <td>
+                        <a class="btn-editar" th:href="@{/agendamentos/editar/{id}(id=${a.id})}">Editar</a>
+                        <a class="btn-excluir" th:href="@{/agendamentos/excluir/{id}(id=${a.id})}"
+                            onclick="return confirm('Deseja excluir este agendamento?')">Excluir</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(agendamentos)}">
+                    <td colspan="6" class="vazio">Nenhum agendamento encontrado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

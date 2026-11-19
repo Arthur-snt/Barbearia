@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Barbearia - Formulário</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+    <div class="container">
+        <h1 th:text="${agendamento.id == null} ? '💈 Novo agendamento' : '💈 Editar agendamento'"></h1>
+
+        <form th:action="@{/agendamentos/salvar}" th:object="${agendamento}" method="post" class="formulario">
+
+            <input type="hidden" th:field="*{id}">
+
+            <label for="nomeCliente">Cliente</label>
+            <input type="text" id="nomeCliente" th:field="*{nomeCliente}">
+            <span class="erro" th:if="${#fields.hasErrors('nomeCliente')}" th:errors="*{nomeCliente}"></span>
+
+            <label for="servico">Serviço</label>
+            <select id="servico" th:field="*{servico}">
+                <option value="">Selecione...</option>
+                <option value="Corte" data-preco="40.00">Corte</option>
+                <option value="Barba" data-preco="30.00">Barba</option>
+                <option value="Corte + Barba" data-preco="65.00">Corte + Barba</option>
+                <option value="Sobrancelha" data-preco="15.00">Sobrancelha</option>
+            </select>
+            <span class="erro" th:if="${#fields.hasErrors('servico')}" th:errors="*{servico}"></span>
+
+            <label for="data">Data</label>
+            <input type="date" id="data" th:field="*{data}">
+            <span class="erro" th:if="${#fields.hasErrors('data')}" th:errors="*{data}"></span>
+
+            <label for="preco">Preço (R$)</label>
+            <input type="number" step="0.01" id="preco" th:field="*{preco}">
+            <span class="erro" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
+
+            <div class="acoes">
+                <button type="submit">Salvar</button>
+                <a class="btn-cancelar" th:href="@{/agendamentos}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <script>
+    const selectServico = document.getElementById('servico');
+    const campoPreco = document.getElementById('preco');
+
+    selectServico.addEventListener('change', function () {
+        const opcao = selectServico.options[selectServico.selectedIndex];
+        const preco = opcao.getAttribute('data-preco');
+        campoPreco.value = preco ? preco : '';
+    });
+</script>
+</body>
+
+</html>

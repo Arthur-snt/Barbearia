@@ -1,0 +1,65 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #1e1e1e;
+    color: #f2f2f2;
+    margin: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #2b2b2b;
+    border-radius: 8px;
+}
+
+h1 { color: #d4a017; margin-top: 0; }
+
+.barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 4px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background: #1e1e1e;
+    color: #f2f2f2;
+}
+
+.barra input { width: 220px; margin-bottom: 0; }
+
+button, .btn, .btn-cancelar {
+    padding: 10px 16px;
+    background: #d4a017;
+    color: #1e1e1e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-cancelar { background: #666; color: #fff; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px; text-align: left; border-bottom: 1px solid #444; }
+th { background: #333; color: #d4a017; }
+
+.btn-editar { color: #5dade2; margin-right: 10px; }
+.btn-excluir { color: #e74c3c; }
+.vazio { text-align: center; color: #999; }
+
+.formulario label { display: block; margin-top: 14px; font-weight: bold; }
+.erro { color: #ff6b6b; font-size: 0.9em; display: block; margin-bottom: 6px; }
+.acoes { margin-top: 20px; display: flex; gap: 10px; }  
